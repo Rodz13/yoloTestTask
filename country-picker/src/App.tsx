@@ -3,7 +3,7 @@ import { ApolloProvider } from '@apollo/client';
 
 import config from './lib/apollo';
 
-import Header from './components/Header';
+import { Header } from './components/Header';
 import Search from './components/Search';
 
 const App = () => {

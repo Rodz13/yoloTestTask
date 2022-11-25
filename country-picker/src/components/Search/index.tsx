@@ -5,11 +5,18 @@ import CountriesList from '../CountryList';
 
 import './index.css';
 
-const Search = () => {
+const Search: React.FC= () => {
 	const [query, updatedQuery] = useState('');
 
-	const handleSearch = (e) => {
-		e.preventDefault();
+	// const handleSearch = (e: React.FormEvent) => {
+	// 	e.preventDefault();
+	// 	const target = e.target as HTMLTextAreaElement;
+	// 	updatedQuery(target.value.toLocaleLowerCase());
+	// }
+
+	const handleSearch = (e: { target: { value: string; } }) => {
+		// e.target.preventDefault();
+		// const target = e.target as HTMLTextAreaElement;
 		updatedQuery(e.target.value.toLocaleLowerCase());
 	}
 
