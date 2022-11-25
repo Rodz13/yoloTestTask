@@ -1,5 +1,9 @@
 .spinner {
 	display: flex;
 	align-items: center;
-	margin: 40px aut;
+	margin: 40px auto;
+	justify-content: center;
+}
+.ant-spin-dot {
+	margin-right: 20px;
 }

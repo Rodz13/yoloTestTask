@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Col, Input, Row } from 'reactstrap';
+// import { Col, Input, Row } from 'reactstrap';
+import { Input, Space } from 'antd';
 
 import CountriesList from '../CountryList';
 
@@ -8,31 +9,22 @@ import './index.css';
 const Search: React.FC= () => {
 	const [query, updatedQuery] = useState('');
 
-	// const handleSearch = (e: React.FormEvent) => {
-	// 	e.preventDefault();
-	// 	const target = e.target as HTMLTextAreaElement;
-	// 	updatedQuery(target.value.toLocaleLowerCase());
-	// }
-
-	const handleSearch = (e: { target: { value: string; } }) => {
-		// e.target.preventDefault();
-		// const target = e.target as HTMLTextAreaElement;
-		updatedQuery(e.target.value.toLocaleLowerCase());
+	const handleSearch = (e: React.FormEvent) => {
+		e.preventDefault();
+		const target = e.target as HTMLTextAreaElement;
+		updatedQuery(target.value.toLocaleLowerCase());
 	}
 
 	return (
 		<div className='container'>
-			<Row>
-				<Col>
-					<div className='search'>
-						<Input
-						onChange={handleSearch}
-						value={query}
-						placeholder='Search here'
-						/>
-						</div>
-				</Col>
-			</Row>
+			<Space direction="vertical" className='search'>
+				<Input
+					placeholder="search country code"
+					onChange={handleSearch}
+					value={query}
+					allowClear
+				/>
+			</Space>
 			<CountriesList search={query} />
 		</div>
 	)
