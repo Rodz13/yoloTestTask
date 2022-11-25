@@ -2,7 +2,7 @@ import React from 'react';
 import { Spin, Table } from 'antd';
 import { useQuery, gql } from '@apollo/client';
 
-import { NotFound } from '../Alert';
+import { NotFound } from '../CountryNotFound';
 
 
 import './index.css'
@@ -41,11 +41,14 @@ const CountriesList = ({ search }: CountryListProps )  => {
 	if (loading) return <Spin className='spinner' tip='Loading...' />
 	if (error) return <span>`Error! ${error.message}`</span>;
 
-	if(data.countries && data.countries.length) {
+	if(data?.countries.length) {
 		const searchQuery = data.countries.filter((query:any) =>
 			query.code.toLowerCase().includes(search));
 
-	if(searchQuery.length !== 0) {
+		if(searchQuery.length === 0) {
+			return <NotFound />
+		}
+
 		const dataSource = searchQuery.map((res:any)  => ({
 			key:res.code, code:res.code, country: res.name
 		}));
@@ -53,12 +56,9 @@ const CountriesList = ({ search }: CountryListProps )  => {
 		return (
 			<Table dataSource={dataSource} columns={columns} />
 		);
-	} else {
-			return <NotFound />
-	}
 }
 
 	return <><span>Search a country fo the world</span></>
 }
 
-export default CountriesList;
+export { GET_COUNTRIES, CountriesList };

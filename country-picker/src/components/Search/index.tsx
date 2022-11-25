@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-// import { Col, Input, Row } from 'reactstrap';
 import { Input, Space } from 'antd';
 
-import CountriesList from '../CountryList';
+import { CountriesList } from '../CountryList';
 
 import './index.css';
 
@@ -30,4 +29,4 @@ const Search: React.FC= () => {
 	)
 }
 
-export default Search;
+export { Search };
