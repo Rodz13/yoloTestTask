@@ -10,7 +10,5 @@ describe('<NotFound />', () => {
 		expect(screen.getByText(/Country code has 2 characters - for example: EE for Estonia/i)).toBeVisible();
 		expect(screen.getByRole('alert', { name: ''})).toBeInTheDocument();
 		expect(screen.getByRole('img', { name: 'close-circle'})).toBeInTheDocument();
-		
 	});
-
 });
