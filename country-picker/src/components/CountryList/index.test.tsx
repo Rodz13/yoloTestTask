@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 
-import { GET_COUNTRIES, CountriesList } from './index';
+import { CountriesList } from './index';
+import { GET_COUNTRIES } from '../utils/getCountries';
 import '../../tests/mocks/mocks';
 
 const mocks: readonly MockedResponse<Record<string, any>>[] | undefined = [

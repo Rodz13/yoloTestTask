@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { MockedProvider } from "@apollo/client/testing";
 import userEvent from '@testing-library/user-event';
+import { MockedProvider } from "@apollo/client/testing";
 
 import { Search } from './index';
 
@@ -26,6 +26,5 @@ describe('<Search />', () => {
 		userEvent.type(screen.getByPlaceholderText(/search country code/i), "BR");
 		expect(screen.getByRole('button', { name: 'close-circle'})).toBeInTheDocument();
 		expect(screen.getByRole('img', { name: 'close-circle'})).toBeInTheDocument();
-
 	});
 });

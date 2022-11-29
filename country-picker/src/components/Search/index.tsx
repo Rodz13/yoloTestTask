@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input, Space } from 'antd';
 
 import { CountriesList } from '../CountryList';
+import { addToQueryParams } from 'components/utils/addToQuery';
 
 import './index.css';
 
@@ -11,7 +12,11 @@ const Search: React.FC= () => {
 	const handleSearch = (e: React.FormEvent) => {
 		e.preventDefault();
 		const target = e.target as HTMLTextAreaElement;
+
 		updatedQuery(target.value.toLocaleLowerCase());
+
+		const queryParams = addToQueryParams('s', target.value);
+		window.history.pushState(null, '', `${window.location.pathname}${queryParams ? `?${queryParams}` : ''}`);
 	}
 
 	return (

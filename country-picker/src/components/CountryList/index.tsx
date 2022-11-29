@@ -1,19 +1,11 @@
 import React from 'react';
 import { Spin, Table } from 'antd';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import { NotFound } from '../CountryNotFound';
-
+import { GET_COUNTRIES } from '../utils/getCountries';
 
 import './index.css'
-
-const GET_COUNTRIES = gql`
-  query countries($countryFilter: CountryFilterInput){
-		countries(filter: $countryFilter) {
-			code
-			name
-		}
-	}`;
 
 type CountryListProps = {
 	search: string;
@@ -25,15 +17,13 @@ const columns =[
 		dataIndex:'code',
 		key:'code'
 
-	} ,
+	},
 	{
 		title:'Country',
 		dataIndex:'country',
 		key:'country'
-
 	},
 ]
-
 
 const CountriesList = ({ search }: CountryListProps )  => {
 	const { loading, error, data } = useQuery(GET_COUNTRIES);
@@ -49,7 +39,7 @@ const CountriesList = ({ search }: CountryListProps )  => {
 			return <NotFound />
 		}
 
-		const dataSource = searchQuery.map((res:any)  => ({
+		const dataSource = searchQuery.map((res:any) => ({
 			key:res.code, code:res.code, country: res.name
 		}));
 
@@ -58,7 +48,7 @@ const CountriesList = ({ search }: CountryListProps )  => {
 		);
 }
 
-	return <><span>Search a country fo the world</span></>
+	return <><span>Search a country of the world</span></>
 }
 
-export { GET_COUNTRIES, CountriesList };
+export { CountriesList };
